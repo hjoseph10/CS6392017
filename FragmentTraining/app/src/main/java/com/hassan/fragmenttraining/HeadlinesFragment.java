@@ -8,12 +8,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class HeadlinesFragment extends ListFragment {
     OnHeadlineSelectedListener mCallback;
 
@@ -24,6 +18,7 @@ public class HeadlinesFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
                 android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
         setListAdapter(new ArrayAdapter<String>(getActivity(), layout, Ipsum.Headlines));
@@ -51,6 +46,6 @@ public class HeadlinesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         mCallback.onArticleSelected(position);
-//        getListView().setItemChecked(position, true);
+        getListView().setItemChecked(position, true);
     }
 }

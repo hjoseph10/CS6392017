@@ -1,31 +1,28 @@
 package com.hassan.fragmenttraining;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ArticleFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ArticleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArticleFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
+    TextView article;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                         Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
+        Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         }
-        return inflater.inflate(R.layout.article_view, container, false);
+
+        View fragmentView = inflater.inflate(R.layout.article_view, container, false);
+
+        article = (TextView) fragmentView.findViewById(R.id.article);
+        return fragmentView;
     }
 
     @Override
@@ -40,7 +37,6 @@ public class ArticleFragment extends Fragment {
     }
 
     public void updateArticleView(int position) {
-        TextView article = (TextView) getActivity().findViewById(R.id.article);
         article.setText(Ipsum.Articles[position]);
         mCurrentPosition = position;
     }
