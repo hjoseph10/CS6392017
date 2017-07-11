@@ -37,11 +37,58 @@ public class MainActivityFragment extends Fragment {
         final ListView listview = (ListView)fragmentView.findViewById(R.id.listview);
 
         String[][] states = new String[][]{
-                {"Hawaii", "21.3280338,-157.7990731"},
-                {"Idaho", "43.600806,-116.233898"},
-                {"Illinois", "39.7638375,-89.6708313"},
-                {"Indiana", "39.7797845,-86.13275"},
-                {"Iowa", "41.56667,-93.606516"},
+                {"Alabama",""},
+                {"Alaska",""},
+                {"Arizona",""},
+                {"Arkansas",""},
+                {"California",""},
+                {"Colorado",""},
+                {"Connecticut",""},
+                {"Delaware",""},
+                {"Florida",""},
+                {"Georgia",""},
+                {"Hawaii",""},
+                {"Idaho",""},
+                {"Illinois","39.7638375,-89.6708313"},
+                {"Indiana",""},
+                {"Iowa",""},
+                {"Kansas",""},
+                {"Kentucky",""},
+                {"Louisiana",""},
+                {"Maine",""},
+                {"Maryland",""},
+                {"Massachusetts",""},
+                {"Michigan",""},
+                {"Minnesota",""},
+                {"Mississippi",""},
+                {"Missouri",""},
+                {"Montana",""},
+                {"Nebraska",""},
+                {"Nevada",""},
+                {"New Hampshire",""},
+                {"New Jersey",""},
+                {"New Mexico",""},
+                {"New York",""},
+                {"North Carolina",""},
+                {"North Dakota",""},
+                {"Ohio",""},
+                {"Oklahoma",""},
+                {"Oregon",""},
+                {"Pennsylvania",""},
+                {"Rhode Island",""},
+                {"South Carolina",""},
+                {"South Dakota",""},
+                {"Tennessee",""},
+                {"Texas",""},
+                {"Utah",""},
+                {"Vermont",""},
+                {"Virginia",""},
+                {"Washington",""},
+                {"West Virginia",""},
+                {"Wisconsin",""},
+                {"Wyoming", ""}
+
+//                {"Illinois", "39.7638375,-89.6708313"},
         };
 //        String[][] states = new String[][]{
 //                {"Hawaii", "geo:0,0?q=Honolulu,HI"},
@@ -64,10 +111,13 @@ public class MainActivityFragment extends Fragment {
                 String geolocation = adapter.getGeolocation(position);
 
                 final Intent recipesactivity = new Intent(getActivity(), MapsActivity.class);
-                geolocation.split(",");
-                recipesactivity.putExtra("LAT", Double.parseDouble(geolocation.split(",")[0]));
-                recipesactivity.putExtra("LNG", Double.parseDouble(geolocation.split(",")[1]));
-                startActivity(recipesactivity);
+                if (geolocation.split(",").length != 2){
+                    Toast.makeText(fragmentView.getContext(), "The Capital Location is Only Defined for Illinois", Toast.LENGTH_LONG).show();
+                }else {
+                    recipesactivity.putExtra("LAT", Double.parseDouble(geolocation.split(",")[0]));
+                    recipesactivity.putExtra("LNG", Double.parseDouble(geolocation.split(",")[1]));
+                    startActivity(recipesactivity);
+                }
 
 //                try{
 //                    final Intent map_intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(geolocation)));
